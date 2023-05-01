@@ -1,9 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateShapes = require("./lib/shapes.js")
+const { Circle, Square, Triangle } = require("./lib/shapes.js")
 
 // TODO: Create an array of questions for user input
+
+
 
 inquirer.prompt([
     {
@@ -28,7 +30,7 @@ inquirer.prompt([
       type: "list",
       message: "Please select a shape",
       name: "shape",
-      choices: ['circle', 'triangle', 'square'],
+      choices: ["Circle", "Square", "Triangle"],
     },
     {
       type: "input",
@@ -39,8 +41,20 @@ inquirer.prompt([
   .then((data) => {
     console.log(data);
     
-    fs.writeFile("logo.svg", generateShapes(data), (error) => {
+    fs.writeFile("logo.svg", shape(data), (error) => {
       error ? console.log(error) : console.log("successfully wrote file");
     });
   });
+
+  function shape(data){
+    let shapeChoice;
+    if (data.shape === "Circle"){
+      shapeChoice = new Circle()
+    }else if (data.shape === "Square"){
+      shapeChoice = new Square()
+    } else {
+      shapeChoice = new Triangle()
+    }
+  }
   
+  shape()
