@@ -4,27 +4,26 @@ const fs = require("fs");
 const { Circle, Square, Triangle } = require("./lib/shapes.js")
 
 // TODO: Create an array of questions for user input
-
-
-
-inquirer.prompt([
+function userPrompt(){
+  
+  inquirer.prompt([
     {
-    type: "input",
-    message: "Please enter up to 3 characters",
-    name: "characters",
-    validate: charNumber => {
+      type: "input",
+      message: "Please enter up to 3 characters",
+      name: "characters",
+      validate: charNumber => {
         if (charNumber.length <=3) {
             return true;
-        } else { 
+          } else { 
             console.log(' Please enter 3 characters or less.');
             return false; 
-        }
-    } 
-    },
+          }
+        } 
+      },
     {
-    type: "input",
-    message: "Please enter a color (or a hexadecimal number)",
-    name: "color",
+      type: "input",
+      message: "Please enter a color (or a hexadecimal number)",
+      name: "color",
     },
     {
       type: "list",
@@ -41,20 +40,25 @@ inquirer.prompt([
   .then((data) => {
     console.log(data);
     
-    fs.writeFile("logo.svg", shape(data), (error) => {
+    fs.writeFile("logo.svg", shapePick(data), (error) => {
       error ? console.log(error) : console.log("successfully wrote file");
     });
   });
-
-  function shape(data){
+  
+  function shapePick(data){
     let shapeChoice;
     if (data.shape === "Circle"){
-      shapeChoice = new Circle()
+      shapeChoice = new Circle();
+      return shapeChoice;
     }else if (data.shape === "Square"){
-      shapeChoice = new Square()
+      shapeChoice = new Square();
+      return shapeChoice;
     } else {
       shapeChoice = new Triangle()
+      return shapeChoice;
     }
-  }
   
-  shape()
+  }
+}
+
+userPrompt()
