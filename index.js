@@ -39,12 +39,14 @@ function userPrompt(){
   ])
   .then((data) => {
     console.log(data);
+    console.log("************");
+    console.log(shapePick(data))
     
-    fs.writeFile("logo.svg", shapePick(data), (error) => {
-      error ? console.log(error) : console.log("successfully wrote file");
-    });
-  });
-  
+    // fs.writeFile("logo.svg", shapePick(data), (error) => {
+    //   error ? console.log(error) : console.log("successfully wrote file");
+    // });
+ 
+  })
   function shapePick(data){
     let shapeChoice;
     if (data.shape === "Circle"){
@@ -57,7 +59,7 @@ function userPrompt(){
       shapeChoice = new Triangle()
       return shapeChoice;
     }
-  
+   ;
   }
 }
 
