@@ -26,4 +26,4 @@ Sample logo.svg: https://github.com/pg1219/HW-Challenge-10-SVG-Logo-Maker/blob/m
 
 Preview image of deployed application
 
-![alt](./assets/hw10mockup.png)
+![alt](./hw10mockup.png)
