@@ -43,7 +43,7 @@ function userPrompt() {
       console.log(shapePick(data).render());
 
       fs.writeFile("logo.svg", shapePick(data).render(), (error) => {
-        error ? console.log(error) : console.log("successfully wrote file");
+        error ? console.log(error) : console.log("Generated logo.svg");
       });
     });
   function shapePick(data) {
